@@ -1,0 +1,298 @@
+:root {
+    --bg-color: #0f172a;
+    --container-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #38bdf8;
+    --user-bubble: #0ea5e9;
+    --assistant-bubble: #334155;
+    --error-color: #f43f5e;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 800px;
+    height: 90vh;
+    background-color: var(--container-bg);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    margin: 1rem;
+}
+
+header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.status {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.messages-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.messages-area::-webkit-scrollbar-thumb {
+    background-color: #334155;
+    border-radius: 3px;
+}
+
+.message {
+    max-width: 80%;
+    display: flex;
+}
+
+.message.user {
+    align-self: flex-end;
+}
+
+.message.assistant {
+    align-self: flex-start;
+}
+
+.bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.user .bubble {
+    background-color: var(--user-bubble);
+    color: white;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.assistant .bubble {
+    background-color: var(--assistant-bubble);
+    color: var(--text-primary);
+    border-bottom-left-radius: 0.25rem;
+}
+
+.message.error .bubble {
+    background-color: rgba(244, 63, 94, 0.1);
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+}
+
+footer {
+    padding: 1.5rem;
+    border-top: 1px solid #334155;
+}
+
+.input-container {
+    display: flex;
+    gap: 0.75rem;
+    background-color: #0f172a;
+    padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+    border-radius: 1.5rem;
+    border: 1px solid #334155;
+    transition: border-color 0.2s;
+}
+
+.input-container:focus-within {
+    border-color: var(--accent-color);
+}
+
+input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1rem;
+    outline: none;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    background-color: #334155;
+    cursor: not-allowed;
+}
+
+.typing-indicator {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+}
+
+/* Modal and Login Form Styles */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-color);
+    /* Full solid background for login */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: var(--container-bg);
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    border: 1px solid #334155;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal header {
+    border: none;
+    padding: 0 0 2rem 0;
+    display: block;
+    text-align: center;
+}
+
+.modal h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent-color);
+}
+
+.modal p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    width: 100%;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    padding: 1rem 1.25rem;
+    border-radius: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    background-color: #1e293b;
+}
+
+.primary-btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    height: 3.5rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
+}
+
+.chat-container.blurred {
+    display: none;
+    /* Hide chat until login */
+}
+
+.hidden {
+    display: none !important;
+}

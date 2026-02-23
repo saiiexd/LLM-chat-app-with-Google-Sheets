@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="login-modal" class="modal-overlay">
+        <div class="modal">
+            <header>
+                <h2>Welcome</h2>
+                <p>Please enter your details to start chatting.</p>
+            </header>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+                <button type="submit" class="primary-btn">Start Chatting</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="chat-container blurred">
+        <header>
+            <h1>AI Chat Assistant</h1>
+            <div class="status">
+                <span class="indicator"></span> Online
+            </div>
+        </header>
+
+        <main id="chat-messages" class="messages-area">
+            <div class="message assistant">
+                <div class="bubble">Hello! How can I help you today?</div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message..." autocomplete="off">
+                <button id="send-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
